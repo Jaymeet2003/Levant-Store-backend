@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "admin-pannel": "file:admin-pannel",
+    "backend": "^0.0.0",
+    "nodemon": "^3.1.9"
+  }
+}
