@@ -1,0 +1,302 @@
+/* General Styles */
+:root {
+    --primary-color: #4A90E2;
+    --secondary-color: #50E3C2;
+    --background-color: #f5f5f5;
+    --text-color: #333;
+    --border-color: #e0e0e0;
+    --input-focus-color: #4A90E2;
+    --error-color: #e74c3c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 450px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.dash-container{
+    width: 80%; /* Wider container for dashboard */
+    max-width: 1400px; /* Prevent it from being excessively wide */
+    min-height: 800px; /* Increase minimum height */
+    margin: 50px auto; /* Center horizontally */
+    padding: 40px 50px; /* Add extra padding for a spacious layout */
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+h2 {
+    text-align: center;
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+button {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 16px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    cursor: pointer;
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background-color: #f9f9f9;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--input-focus-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.25);
+}
+
+input::placeholder, textarea::placeholder {
+    color: #999;
+}
+
+textarea {
+    resize: none;
+    height: 120px;
+}
+
+input.error, textarea.error {
+    border-color: var(--error-color) !important;
+}
+
+.input-icon {
+    position: relative;
+}
+
+.input-icon input {
+    padding-left: 40px;
+}
+
+.input-icon i {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.success-message, .error-message {
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-header h2 {
+    font-size: 24px;
+    color: var(--primary-color);
+}
+
+.dashboard-header button {
+    width: auto;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+}
+
+.dashboard-header button:hover {
+    background-color: var(--secondary-color);
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Style for the logout button */
+#logout-btn {
+    position: fixed;              /* Keeps the button at a fixed position */
+    top: 20px;                    /* 20px from the top */
+    right: 20px;                  /* 20px from the right */
+    background-color: #f44336;    /* Initial background color */
+    color: white;                 /* White text color */
+    border: none;                 /* Remove border */
+    border-radius: 12px;          /* Curved corners */
+    padding: 10px 20px;           /* Padding inside the button (smaller size) */
+    font-size: 16px;              /* Font size for button text */
+    font-weight: bold;            /* Bold text for visibility */
+    cursor: pointer;              /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
+    z-index: 1000;                /* Ensures the button stays on top of other content */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for better visibility */
+    display: inline-block;       /* Ensures the button only takes up as much space as needed */
+    width: auto;                 /* Button width is determined by its content */
+    height: auto;                /* Height is determined by its content */
+    line-height: 1;              /* Ensures no extra space inside the button */
+    text-align: center;          /* Centers text inside the button */
+  }
+  
+  /* Hover effect for the logout button */
+  #logout-btn:hover {
+    background-color: red;       /* Change background color to red on hover */
+    transform: scale(1.05);      /* Slightly increase size on hover */
+  }
+
+  #blog-content{
+    min-height: 250px;
+  }
+
+  #blog-keywords{
+    margin-bottom: 20px;
+  }
+  
+  /* Optional: Add focus style (for accessibility) */
+  #logout-btn:focus {
+    outline: 2px solid #f44336;  /* Highlight the button when focused */
+    outline-offset: 4px;         /* Space between outline and button */
+  }
+
+.blog-cards-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping to the next line */
+    gap: 20px; /* Spacing between cards */
+    justify-content: center; /* Center the cards */
+    margin: 20px auto; /* Center container horizontally */
+    max-width: 1200px; /* Limit the width to 4 cards horizontally */
+}
+
+.blog-card {
+    flex: 1 1 calc(25% - 20px);
+    max-width: calc(25% - 20px);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column; /* Ensure proper stacking of elements */
+    align-items: center; /* Center-align content */
+}
+
+
+.blog-card:hover {
+    transform: scale(1.05);
+}
+
+.blog-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 16px;
+    text-align: center; /* Center-align the caption text */
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 8px; /* Add some space above the caption */
+}
+
+.blog-card .card-description {
+    color: #555;
+    margin-top: 8px;
+}
+
+@media (max-width: 1024px) {
+    .blog-card {
+        flex: 1 1 calc(50% - 20px); /* 2 cards per row */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-card {
+        flex: 1 1 calc(100% - 20px); /* 1 card per row */
+        max-width: calc(100% - 20px);
+    }
+}
+
