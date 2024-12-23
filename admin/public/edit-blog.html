@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Blog</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container dash-container">
+        <h2>Edit Blog</h2>
+        <form id="edit-blog-form">
+            <div class="form-group">
+                <label for="blog-title">Blog Title</label>
+                <input type="text" id="blog-title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="blog-content">Blog Content</label>
+                <textarea id="blog-content" name="content" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="blog-image">Blog Image</label>
+                <input type="file" id="blog-image" name="image" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label>Current Image</label>
+                <img id="current-image" src="" alt="Current Blog Image" style="width: 100%; max-height: 200px; object-fit: cover;">
+            </div>
+            <div class="form-group">
+                <label for="blog-keywords">Set Keywords</label>
+                <input type="text" id="blog-keywords" name="seoKeywords" placeholder="Enter keywords, comma-separated" required>
+            </div>
+            <button type="submit">Update Blog</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const blogId = window.location.pathname.split('/').pop(); // Extract blog ID from URL
+
+            try {
+                const response = await fetch(`/blogs/${blogId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch blog data');
+                }
+
+                const blog = await response.json();
+
+                // Populate form with blog data
+                document.getElementById('blog-title').value = blog.title;
+                document.getElementById('blog-content').value = blog.content;
+                document.getElementById('blog-keywords').value = blog.seoKeywords?.join(', ') || '';
+
+                // Set the current image
+                const currentImage = document.getElementById('current-image');
+                currentImage.src = blog.image ? `/uploads/${blog.image}` : '/img/img.png';
+            } catch (error) {
+                console.error('Error loading blog data:', error);
+                alert('Failed to load blog data.');
+            }
+        });
+
+        document.getElementById('edit-blog-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const blogId = window.location.pathname.split('/').pop();
+            const formData = new FormData();
+            formData.append('title', document.getElementById('blog-title').value);
+            formData.append('content', document.getElementById('blog-content').value);
+            formData.append('image', document.getElementById('blog-image').files[0]); // Optional image update
+            formData.append('seoKeywords', document.getElementById('blog-keywords').value);
+
+            try {
+                const response = await fetch(`/edit-blog/${blogId}`, {
+                    method: 'PUT',
+                    body: formData,
+                });
+
+                const result = await response.json(); // Log the result
+                console.log('Update response:', result);
+
+                if (response.ok) {
+                    alert('Blog updated successfully!');
+                    window.location.href = '/admin/dashboard';
+                } else {
+                    alert(`Error: ${result.message}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to update the blog.');
+            }
+        });
+    </script>
+</body>
+</html>
