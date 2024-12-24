@@ -11,7 +11,7 @@ require("dotenv").config();
 const session = require('express-session');
 
 const app = express();
-const port = 3000;
+const port = 4000;
 
 // Session management
 app.use(session({
