@@ -17,23 +17,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// const allowedOrigins = [
-//   'https://admin.yourapp.com', // Admin frontend URL
-//   'https://client.yourapp.com', // Client frontend URL
-// ];
-
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     if (!origin || allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   },
-//   credentials: true,
-// }));
-
-
 // Connect to MongoDB --------------------------*
 
 Mongoose.connect(process.env.MONGO_URI, {
