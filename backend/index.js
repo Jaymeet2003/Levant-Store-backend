@@ -3,9 +3,11 @@ const inquiryRoutes = require("./routes/inquiry.js");
 const menuRoutes = require("./routes/menu.js");
 const blogRoutes = require("./routes/blog.js");
 const Mongoose = require("mongoose");
-
+const path = require('path');
 const cors = require("cors");
-require("dotenv").config();
+require("dotenv").config({
+  path: path.resolve(__dirname, '.env'),
+});
 
 const app = express();
 
